@@ -1,0 +1,14 @@
+<launch>
+    <include file="$(find jackal_gazebo)/launch/jackal_world.launch">
+        <arg name="config" value="front_laser"/>
+    </include>
+    <include file="$(find jackal_navigation)/launch/amcl_demo.launch">
+        <arg name="map_file" value="/home/river/gazebo_map.yaml"/>
+    </include>
+    <include file="$(find jackal_viz)/launch/view_robot.launch">
+        <arg name="config" value="localization"/>
+    </include>
+    <node name="topic_tools_mux" pkg="topic_tools" type="mux" 
+    	args="/cmd_vel /bsc_jackal/bsc_vel /bsc_jackal/key_vel /bsc_jackal/nav_vel mux:=bsc_mux">
+    </node> 
+</launch>
