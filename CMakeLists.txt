@@ -9,6 +9,7 @@ project(jackal_bsc)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
+  nav_msgs
   message_filters
   roscpp
   rospy
@@ -104,7 +105,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+   INCLUDE_DIRS include
 #  LIBRARIES jackal_bsc
 #  CATKIN_DEPENDS geometry_msgs message_filters roscpp rospy
 #  DEPENDS system_lib
@@ -152,26 +153,9 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
-add_executable(jackal_bsc
-  src/jackal_bsc.cpp
-)
-add_dependencies(jackal_bsc ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(jackal_bsc
-  ${catkin_LIBRARIES}
-)
+add_executable(twist_stamped_publisher src/twist_stamped_publisher.cpp)
+add_library(BSCTwistStamped src/BSCTwistStamped.cpp)
+target_link_libraries(twist_stamped_publisher BSCTwistStamped ${catkin_LIBRARIES})
 
-add_library(bsc
-  src/BSCTwistStamped.cpp
-)
-add_dependencies(bsc ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(bsc
-  ${catkin_LIBRARIES}
-)
-
-add_executable(bsc_twist_stamped
-  src/bsc_twist_stamped.cpp
-)
-add_dependencies(bsc_twist_stamped ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(bsc_twist_stamped
-  ${catkin_LIBRARIES}
-)
+add_executable(bsc_node src/bsc_node.cpp)
+target_link_libraries(bsc_node ${catkin_LIBRARIES})

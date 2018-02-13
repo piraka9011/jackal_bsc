@@ -1,7 +1,7 @@
 #ifndef BSCTWISTSTAMPED_H
 #define BSCTWISTSTAMPED_H
 
-#include <ros/ros.h>
+#include "ros/ros.h"
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/TwistStamped.h>
 #include <geometry_msgs/PoseStamped.h>
@@ -18,7 +18,7 @@ class BSCTwistStamped
         ros::Subscriber key_sub;
 
     public:
-        BSCTwistStamped (ros::NodeHandle nh);
+        BSCTwistStamped (ros::NodeHandle* nh);
         void nav_cb(const geometry_msgs::TwistConstPtr& nav_vel);
         void key_cb(const geometry_msgs::TwistConstPtr& key_vel);
 };

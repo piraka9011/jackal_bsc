@@ -1,20 +1,21 @@
-#include "BSCTwistStamped.h"
+#include "../include/BSCTwistStamped.h"
 
 
-BSCTwistStamped::BSCTwistStamped(ros::NodeHandle nh):
-    n(nh)
+BSCTwistStamped::BSCTwistStamped(ros::NodeHandle* nh):n(*nh)
 {
     // Get topic names
     n.param<std::string>("nav_topic", nav_topic, "/bsc_jackal/nav_vel");
     n.param<std::string>("teleop_topic", key_topic, "/bsc_jackal/key_vel");
     n.param<std::string>("nav_topic_stamped", nav_topic_stamped, "/bsc_jackal/nav_vel_stamped");
     n.param<std::string>("teleop_topic_stamped", key_topic_stamped, "/bsc_jackal/key_vel_stamped");
+    ROS_INFO("Navigation Topic: %s\n Stamped Navigation Topic: %s\n"
+             "Teleop Topic: %s\n Stamped Teleop Topic: %s\n",
+              nav_topic.c_str(), nav_topic_stamped.c_str(), key_topic.c_str(), key_topic_stamped.c_str());
     // Create pubs/subs
-    nav_stamped_pub = n.advertise<geometry_msgs::TwistStamped>(nav_topic, 10);
-    key_stamped_pub = n.advertise<geometry_msgs::TwistStamped>(key_topic, 10);
+    nav_stamped_pub = n.advertise<geometry_msgs::TwistStamped>(nav_topic_stamped, 10);
+    key_stamped_pub = n.advertise<geometry_msgs::TwistStamped>(key_topic_stamped, 10);
     nav_sub = n.subscribe(nav_topic, 10, &BSCTwistStamped::nav_cb, this);
     key_sub = n.subscribe(key_topic, 10 , &BSCTwistStamped::key_cb, this);
-    ros::spin();
 }
 
 /**
@@ -36,5 +37,5 @@ void BSCTwistStamped::key_cb(const geometry_msgs::TwistConstPtr& key_vel)
     new_twist.header.stamp = ros::Time::now();
     new_twist.twist.linear.x = key_vel->linear.x;
     new_twist.twist.angular.z = key_vel->angular.z;
-    nav_stamped_pub.publish(new_twist);
+    key_stamped_pub.publish(new_twist);
 }
