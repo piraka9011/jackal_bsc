@@ -1,0 +1,4 @@
+<launch>
+    <node name="twist_stamped_publisher" package="jackal_bsc" type="twist_stamped_publisher"/>
+    <node name="bsc_node" package="jackal_bsc" type="bsc_node"/>
+</launch>
