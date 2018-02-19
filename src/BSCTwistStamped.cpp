@@ -1,13 +1,13 @@
-#include "../include/BSCTwistStamped.h"
+#include "jackal_bsc/BSCTwistStamped.h"
 
 
 BSCTwistStamped::BSCTwistStamped(ros::NodeHandle* nh):n(*nh)
 {
     // Get topic names
-    n.param<std::string>("nav_topic", nav_topic, "/bsc_jackal/nav_vel");
-    n.param<std::string>("teleop_topic", key_topic, "/bsc_jackal/key_vel");
-    n.param<std::string>("nav_topic_stamped", nav_topic_stamped, "/bsc_jackal/nav_vel_stamped");
-    n.param<std::string>("teleop_topic_stamped", key_topic_stamped, "/bsc_jackal/key_vel_stamped");
+    n.param<std::string>("nav_topic", nav_topic, "/jackal_bsc/nav_vel");
+    n.param<std::string>("teleop_topic", key_topic, "/jackal_bsc/key_vel");
+    n.param<std::string>("nav_topic_stamped", nav_topic_stamped, "/jackal_bsc/nav_vel_stamped");
+    n.param<std::string>("teleop_topic_stamped", key_topic_stamped, "/jackal_bsc/key_vel_stamped");
     ROS_INFO("Navigation Topic: %s\n Stamped Navigation Topic: %s\n"
              "Teleop Topic: %s\n Stamped Teleop Topic: %s\n",
               nav_topic.c_str(), nav_topic_stamped.c_str(), key_topic.c_str(), key_topic_stamped.c_str());

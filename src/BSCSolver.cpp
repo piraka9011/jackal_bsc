@@ -2,7 +2,7 @@
 // Created by river on 2/13/18.
 //
 
-#include "../include/BSCSolver.h"
+#include "jackal_bsc/BSCSolver.h"
 
 using namespace geometry_msgs;
 using namespace message_filters;
@@ -10,9 +10,9 @@ using namespace message_filters;
 BSCSolver::BSCSolver(ros::NodeHandle* nh):n(*nh)
 {
     // Get params
-    n.param<std::string>("nav_topic", nav_topic, "/bsc_jackal/nav_vel_stamped");
-    n.param<std::string>("teleop_topic", key_topic, "/bsc_jackal/key_vel_stamped");
-    n.param<std::string>("bsc_topic", bsc_topic, "/bsc_jackal/bsc_vel");
+    n.param<std::string>("nav_topic_stamped", nav_topic, "/jackal_bsc/nav_vel_stamped");
+    n.param<std::string>("teleop_topic_stamped", key_topic, "/jackal_bsc/key_vel_stamped");
+    n.param<std::string>("bsc_topic", bsc_topic, "/jackal_bsc/bsc_vel");
     n.param<std::string>("odom_topic", odom_topic, "/jackal_velocity_controller/odom");
     n.param<std::string>("goal_topic", goal_topic, "/move_base/current_goal");
     max_dist = 15.0;
@@ -50,6 +50,12 @@ void BSCSolver::bsc_cb(const geometry_msgs::TwistStampedConstPtr &nav_vel,
 {
     if (goal_received)
     {
+        // Compute difference in user and navigation commands
+        user_vel_z = key_vel->twist.angular.z;
+        user_vel_x = key_vel->twist.angular.x;
+        navi_vel = nav_vel->twist.angular.z;
+        delta_z = user_vel_z - navi_vel;
+
         // Compute displacement from current position to goal
         current_x = odom->pose.pose.position.x;
         current_y = odom->pose.pose.position.y;
@@ -57,19 +63,14 @@ void BSCSolver::bsc_cb(const geometry_msgs::TwistStampedConstPtr &nav_vel,
         delta_y = goal_y - current_y;
         dist_to_goal = hypot(delta_x, delta_y);
 
-        // Compute difference in user and navigation commands
-        user_vel = key_vel->twist.angular.z;
-        navi_vel = nav_vel->twist.angular.z;
-        delta_z = user_vel - navi_vel;
-
         // Compute BSC parameter
         bsc_param = fmax(0, (1 - (dist_to_goal/max_dist))) *
                     fmax(0, (1 - pow(delta_z / max_vel, 2)));
         // Apply blending
         geometry_msgs::TwistStamped blended_vel;
         blended_vel.header.stamp = ros::Time::now();
-        blended_vel.twist.angular.z = user_vel - (bsc_param * delta_z);
-        blended_vel.twist.linear.x = user_vel;
+        blended_vel.twist.angular.z = user_vel_z - (bsc_param * delta_z);
+        blended_vel.twist.linear.x = user_vel_x;
         bsc_pub.publish(blended_vel);
     }
 }

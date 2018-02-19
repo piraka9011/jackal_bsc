@@ -1,7 +1,7 @@
 //
 // Created by river on 2/13/18.
 //
-#include "BSCTwistStamped.h"
+#include "jackal_bsc/BSCTwistStamped.h"
 
 int main(int argc, char** argv)
 {

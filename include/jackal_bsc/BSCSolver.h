@@ -24,7 +24,8 @@ public:
     std::string odom_topic, goal_topic;
     double goal_x, goal_y, current_x, current_y;
     double delta_x, delta_y, dist_to_goal; // Displacement from current location to goal
-    double delta_z, user_vel, navi_vel;
+    double delta_z, user_vel_z, navi_vel;
+    double user_vel_x, user_delay_z, user_delay_x;
     double bsc_param;
     double max_dist;
     double max_vel;

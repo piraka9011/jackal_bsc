@@ -1,0 +1,9 @@
+user_name: Anas
+nav_topic: "/jackal_bsc/nav_vel_stamped"
+teleop_topic: "/jackal_bsc/key_vel_delay"
+bsc_toic: "/jackal_bsc/bsc_vel"
+odom_topic: "/jackal_velocity_controller/odom"
+goal_topic: "/move_base/current_goal"
+delay_time: 1
+delay_topic: "/bsc_jackal/key_vel_stamped"
+new_topic: "/bsc_jackal/key_vel_delay"

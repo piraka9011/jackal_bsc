@@ -9,6 +9,6 @@
         <arg name="config" value="localization"/>
     </include>
     <node name="topic_tools_mux" pkg="topic_tools" type="mux" 
-    	args="/cmd_vel /bsc_jackal/bsc_vel /bsc_jackal/key_vel /bsc_jackal/nav_vel mux:=bsc_mux">
+    	args="/cmd_vel /jackal_bsc/bsc_vel /jackal_bsc/key_vel /jackal_bsc/nav_vel mux:=bsc_mux">
     </node> 
 </launch>

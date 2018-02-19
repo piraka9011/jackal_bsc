@@ -1,4 +1,4 @@
-#include "BSCSolver.h"
+#include "jackal_bsc/BSCSolver.h"
 
 int main(int argc, char** argv)
 {
