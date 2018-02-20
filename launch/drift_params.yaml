@@ -1,0 +1,3 @@
+teleop_topic_stamped: "/jackal_bsc/key_vel_drift"
+drift_topic: "/jackal_bsc/key_vel_stamped"
+new_topic: "/jackal_bsc/key_vel_drift"

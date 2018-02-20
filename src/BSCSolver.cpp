@@ -10,11 +10,11 @@ using namespace message_filters;
 BSCSolver::BSCSolver(ros::NodeHandle* nh):n(*nh)
 {
     // Get params
-    n.param<std::string>("nav_topic_stamped", nav_topic, "/jackal_bsc/nav_vel_stamped");
-    n.param<std::string>("teleop_topic_stamped", key_topic, "/jackal_bsc/key_vel_stamped");
-    n.param<std::string>("bsc_topic", bsc_topic, "/jackal_bsc/bsc_vel");
-    n.param<std::string>("odom_topic", odom_topic, "/jackal_velocity_controller/odom");
-    n.param<std::string>("goal_topic", goal_topic, "/move_base/current_goal");
+    n.param<std::string>("/jackal_bsc/nav_topic_stamped", nav_topic, "/jackal_bsc/nav_vel_stamped");
+    n.param<std::string>("/jackal_bsc/teleop_topic_stamped", key_topic, "/jackal_bsc/key_vel_stamped");
+    n.param<std::string>("/jackal_bsc/bsc_topic", bsc_topic, "/jackal_bsc/bsc_vel");
+    n.param<std::string>("/jackal_bsc/odom_topic", odom_topic, "/jackal_velocity_controller/odom");
+    n.param<std::string>("/jackal_bsc/goal_topic", goal_topic, "/move_base/current_goal");
     max_dist = 15.0;
     max_vel = 3.0;
     goal_received = false;

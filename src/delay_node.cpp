@@ -9,7 +9,7 @@ using namespace message_filters;
 
 ros::Publisher pub;
 
-void delay_cb(const TwistStampedConstPtr& delay_vel)
+void drift_cb(const TwistStampedConstPtr &delay_vel)
 {
     TwistStamped new_vel;
     new_vel.header.stamp = ros::Time::now();
@@ -30,7 +30,7 @@ int main(int argc, char** argv)
     message_filters::Subscriber<TwistStamped> sub(n, delay_topic, 1);
     message_filters::TimeSequencer<TwistStamped> seq(sub, ros::Duration(delay_time),
                                                      ros::Duration(0.01), 10);
-    seq.registerCallback(delay_cb);
+    seq.registerCallback(drift_cb);
 
     ros::spin();
     return 0;
