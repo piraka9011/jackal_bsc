@@ -13,6 +13,11 @@
 #include <iostream>
 #include <fstream>
 
+typedef message_filters::Subscriber<geometry_msgs::TwistStamped> twist_sub_type;
+typedef message_filters::Subscriber<nav_msgs::Odometry> odom_sub_type;
+typedef message_filters::sync_policies::ApproximateTime<geometry_msgs::TwistStamped,
+        geometry_msgs::TwistStamped, nav_msgs::Odometry> AppxSyncPolicy;
+
 class BSCSolver
 {
 
@@ -28,13 +33,18 @@ public:
     double bsc_param;
     double max_dist;
     double max_vel;
+    int q_size;
     bool goal_received; // Check if action CB ran
 
     ros::Publisher bsc_pub;
-    ros::Publisher alpha_pub, ;
+    ros::Subscriber goal_sub;
+
+    message_filters::Subscriber<geometry_msgs::TwistStamped>* nav_sub;
+    message_filters::Subscriber<geometry_msgs::TwistStamped>* key_sub;
+    message_filters::Subscriber<nav_msgs::Odometry>* odom_sub;
+    message_filters::Synchronizer<AppxSyncPolicy>* appx_sync;
 
     BSCSolver(ros::NodeHandle* nh);
-    ~BSCSolver();
     void bsc_cb(const geometry_msgs::TwistStampedConstPtr& nav_vel,
                 const geometry_msgs::TwistStampedConstPtr& key_vel,
                 const nav_msgs::OdometryConstPtr& odom);
