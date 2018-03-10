@@ -78,6 +78,7 @@ target_link_libraries(twist_stamped_publisher BSCTwistStamped ${catkin_LIBRARIES
 
 add_executable(bsc_node src/bsc_node.cpp)
 add_library(BSCSolver src/BSCSolver.cpp)
+
 target_link_libraries(bsc_node BSCSolver ${catkin_LIBRARIES})
 
 add_executable(delay_node src/delay_node.cpp)
@@ -85,3 +86,4 @@ target_link_libraries(delay_node ${catkin_LIBRARIES})
 
 add_executable(drift_node src/drift_node.cpp)
 target_link_libraries(drift_node ${catkin_LIBRARIES})
+

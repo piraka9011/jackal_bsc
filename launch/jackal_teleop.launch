@@ -1,5 +1,5 @@
 <launch>
 	<node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen">
-		<remap from="cmd_vel" to="/bsc_jackal/key_vel"/>
+		<remap from="cmd_vel" to="/jackal_bsc/key_vel"/>
 	</node>
 </launch>

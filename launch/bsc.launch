@@ -1,0 +1,5 @@
+<launch>
+    <rosparam command="load" file="$(find jackal_bsc)/launch/bsc_params.yaml" ns="jackal_bsc"/>
+    <node name="twist_stamped_publisher" pkg="jackal_bsc" type="twist_stamped_publisher" output="screen"/>
+    <node name="bsc_node" pkg="jackal_bsc" type="bsc_node" output="screen"/>
+</launch>
