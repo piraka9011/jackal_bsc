@@ -26,6 +26,7 @@ BSCSolver::BSCSolver(ros::NodeHandle* nh):n(*nh)
     goal_received = false;
     // Create publishers
     bsc_pub = n.advertise<Twist>("/jackal_bsc/bsc_vel", q_size);
+    alpha_pub = n.advertise<double>("/jackal_bsc/alpha", q_size);
 
     // Create normal subscribers
     goal_sub = n.subscribe(goal_topic, 10, &BSCSolver::goal_cb, this);
@@ -74,6 +75,7 @@ void BSCSolver::bsc_cb(const geometry_msgs::TwistStampedConstPtr &nav_vel,
         // Compute BSC parameter
         bsc_param = fmax(0, (1 - (dist_to_goal / max_dist))) *
                     fmax(0, (1 - pow(delta_z / max_vel, 2)));
+        alpha_pub.publish(bsc_param);
 
         // Apply blending
         geometry_msgs::Twist blended_vel;

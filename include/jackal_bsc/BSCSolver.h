@@ -37,6 +37,7 @@ public:
     bool goal_received; // Check if action CB ran
 
     ros::Publisher bsc_pub;
+    ros::Publisher alpha_pub;
     ros::Subscriber goal_sub;
 
     message_filters::Subscriber<geometry_msgs::TwistStamped>* nav_sub;
