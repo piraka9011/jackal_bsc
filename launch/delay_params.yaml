@@ -1,3 +1,0 @@
-teleop_topic_stamped: "/jackal_bsc/key_vel_delay"
-delay_topic: "/jackal_bsc/key_vel_stamped"
-new_topic: "/jackal_bsc/key_vel_delay"

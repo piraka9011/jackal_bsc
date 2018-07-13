@@ -13,7 +13,7 @@ BSCTwistStamped::BSCTwistStamped(ros::NodeHandle* nh):n(*nh)
     key_stamped_pub = n.advertise<geometry_msgs::TwistStamped>(key_topic_stamped, 10);
     nav_sub = n.subscribe(nav_topic, 10, &BSCTwistStamped::nav_cb, this);
     key_sub = n.subscribe(key_topic, 10 , &BSCTwistStamped::key_cb, this);
-    ROS_INFO("Created TwistStamped pubs/subs");
+    ROS_INFO("[TwistStamped]: Created TwistStamped pubs/subs");
 }
 
 /**

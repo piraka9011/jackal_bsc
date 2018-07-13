@@ -22,7 +22,7 @@ int main(int argc, char** argv)
     std::string drift_topic, new_topic;
     n.param<std::string>("/jackal_bsc/drift_topic", drift_topic, "/jackal_bsc/key_vel_stamped");
     n.param<std::string>("/jackal_bsc/new_topic", new_topic, "/jackal_bsc/key_vel_drift");
-    n.param<double>("/jackal_bsc/drift", drift_value, 1.0);
+    n.param<double>("/jackal_bsc/drift_value", drift_value, 1.0);
     pub = n.advertise<TwistStamped>(new_topic, 10);
     ros::Subscriber drift_sub = n.subscribe(drift_topic, 10, drift_cb);
     ros::spin();

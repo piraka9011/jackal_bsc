@@ -1,14 +1,15 @@
 <launch>
+    <node name="topic_tools_mux" pkg="topic_tools" type="mux"
+          args="/cmd_vel /jackal_bsc/bsc_vel /jackal_bsc/key_vel /jackal_bsc/nav_vel mux:=bsc_mux">
+    </node>
     <include file="$(find jackal_gazebo)/launch/jackal_world.launch">
         <arg name="config" value="front_laser"/>
     </include>
+    <remap from="cmd_vel" to="/jackal_bsc/nav_vel"/>
     <include file="$(find jackal_navigation)/launch/amcl_demo.launch">
-        <arg name="map_file" value="/home/river/gazebo_map.yaml"/>
+        <arg name="map_file" value="/home/piraka9011/catkin_ws/src/jackal_bsc/config/simmap.yaml"/>
     </include>
     <include file="$(find jackal_viz)/launch/view_robot.launch">
         <arg name="config" value="localization"/>
     </include>
-    <node name="topic_tools_mux" pkg="topic_tools" type="mux" 
-    	args="/cmd_vel /jackal_bsc/bsc_vel /jackal_bsc/key_vel /jackal_bsc/nav_vel mux:=bsc_mux">
-    </node> 
 </launch>

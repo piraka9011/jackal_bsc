@@ -1,0 +1,13 @@
+# Stamped Topics
+nav_topic_stamped: "/jackal_bsc/nav_vel_stamped"
+teleop_topic_stamped: "/jackal_bsc/key_vel_stamped"
+# BSC Topics
+bsc_nav_topic: "/jackal_bsc/nav_vel"
+bsc_teleop_topic: "/jackal_bsc/key_vel_delay"
+bsc_topic: "/jackal_bsc/bsc_vel"
+# Util Topics
+odom_topic: "/jackal_velocity_controller/odom"
+goal_topic: "/move_base/current_goal"
+# Delay Topics
+delay_topic: "/jackal_bsc/key_vel_stamped"
+new_topic: "/jackal_bsc/key_vel_delay"

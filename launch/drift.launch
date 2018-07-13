@@ -1,7 +1,7 @@
 <launch>
     <rosparam command="load" file="$(find jackal_bsc)/config/exp_params.yaml" ns="jackal_bsc"/>
-    <rosparam command="load" file="$(find jackal_bsc)/config/delay_params.yaml" ns="jackal_bsc"/>
-    <param name="/jackal_bsc/exp_type" type="str" value="delay"/>
+    <rosparam command="load" file="$(find jackal_bsc)/config/drift_params.yaml" ns="jackal_bsc"/>
+    <param name="/jackal_bsc/exp_type" type="str" value="drift"/>
 
     <include file="$(find jackal_bsc)/launch/bsc.launch"/>
     <node name="delay_node" pkg="jackal_bsc" type="delay_node.py" output="screen"/>

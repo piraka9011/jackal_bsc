@@ -5,8 +5,7 @@ int main(int argc, char** argv)
     ros::init(argc, argv, "bsc_node");
     ros::NodeHandle n;
     BSCSolver bscs(&n);
-    ROS_INFO("Created BSC node");
-    ROS_INFO("Spinning...");
+    ROS_INFO("[BSC]: Node ready");
     ros::spin();
     return 0;
 }
