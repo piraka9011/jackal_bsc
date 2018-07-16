@@ -1,0 +1,3 @@
+<launch>
+    <node name="data_collection" pkg="jackal_bsc" type="data_collection.py" output="screen"/>
+</launch>

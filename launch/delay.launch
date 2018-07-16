@@ -1,8 +1,11 @@
 <launch>
+    <!-- Params -->
     <rosparam command="load" file="$(find jackal_bsc)/config/exp_params.yaml" ns="jackal_bsc"/>
     <rosparam command="load" file="$(find jackal_bsc)/config/delay_params.yaml" ns="jackal_bsc"/>
     <param name="/jackal_bsc/exp_type" type="str" value="delay"/>
-
-    <include file="$(find jackal_bsc)/launch/bsc.launch"/>
+    <!-- BSC -->
+    <node name="twist_stamped_publisher" pkg="jackal_bsc" type="twist_stamped_publisher" output="screen"/>
+    <node name="bsc_node" pkg="jackal_bsc" type="bsc_node" output="screen"/>
+    <!-- Delay -->
     <node name="delay_node" pkg="jackal_bsc" type="delay_node.py" output="screen"/>
 </launch>

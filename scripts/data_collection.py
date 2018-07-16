@@ -55,6 +55,7 @@ class DataCollection:
             self.end()
 
     def start(self):
+        rospy.loginfo("[Data]: Experiment started")
         try:
             self.start_time = rospy.Time().now()
             self.move_client.send_goal(self.goal)
@@ -67,10 +68,15 @@ class DataCollection:
         rospy.loginfo("[Data]: Completing data collection...")
         self.end_time = rospy.Time().now()
         total_time = self.end_time - self.start_time
-        self.time_writer.writerow([total_time])
+        format_time = str(total_time.secs) + '.' + str(total_time.nsecs)
+        self.time_writer.writerow(["Time:", format_time])
+        self.time_writer.writerow(["Goal Reached:", self.goal_not_reached])
         self.alpha_csv.close()
         self.time_csv.close()
         exit()
+
+    def __del__(self):
+        self.end()
 
 
 if __name__ == '__main__':
