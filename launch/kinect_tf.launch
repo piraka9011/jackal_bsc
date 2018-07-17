@@ -1,0 +1,3 @@
+<launch>
+    <node name="kinect_tf_publisher" pkg="jackal_bsc" type="kinect_tf_publisher" output="screen"/>
+</launch>

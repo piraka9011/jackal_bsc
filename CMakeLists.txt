@@ -8,11 +8,12 @@ project(jackal_bsc)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  geometry_msgs
-  nav_msgs
-  message_filters
   roscpp
   rospy
+  geometry_msgs
+  message_filters
+  nav_msgs
+  tf
 )
 
 ###################################
@@ -72,17 +73,17 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
-add_executable(twist_stamped_publisher src/twist_stamped_publisher.cpp)
 add_library(BSCTwistStamped src/BSCTwistStamped.cpp)
+add_library(BSCSolver src/BSCSolver.cpp)
+
+add_executable(twist_stamped_publisher src/twist_stamped_publisher.cpp)
 target_link_libraries(twist_stamped_publisher BSCTwistStamped ${catkin_LIBRARIES})
 
 add_executable(bsc_node src/bsc_node.cpp)
-add_library(BSCSolver src/BSCSolver.cpp)
-
 target_link_libraries(bsc_node BSCSolver ${catkin_LIBRARIES})
 
-#add_executable(delay_node src/delay_node.cpp)
-#target_link_libraries(delay_node ${catkin_LIBRARIES})
+add_executable(kinect_tf_publisher src/kinect_tf_publisher.cpp)
+target_link_libraries(kinect_tf_publisher ${catkin_LIBRARIES})
 
 add_executable(drift_node src/drift_node.cpp)
 target_link_libraries(drift_node ${catkin_LIBRARIES})
