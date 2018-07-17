@@ -1,6 +1,7 @@
 # Original topics
 nav_topic: "/jackal_bsc/nav_vel"
-teleop_topic: "/jackal_bsc/key_vel"
+teleop_topic: "/ps4_cmd_vel"
+#teleop_topic: "/jackal_bsc/key_vel"
 # Stamped Topics
 nav_topic_stamped: "/jackal_bsc/nav_vel_stamped"
 teleop_topic_stamped: "/jackal_bsc/key_vel_stamped"
