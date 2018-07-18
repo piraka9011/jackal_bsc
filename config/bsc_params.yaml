@@ -10,5 +10,5 @@ bsc_nav_topic: "/jackal_bsc/nav_vel_stamped"
 bsc_teleop_topic: "/jackal_bsc/key_vel_stamped"
 bsc_topic: "/jackal_bsc/bsc_vel"
 # Util Topics
-odom_topic: "/jackal_velocity_controller/odom"
+odom_topic: "/odometry/filtered"
 goal_topic: "/move_base/current_goal"

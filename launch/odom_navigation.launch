@@ -12,6 +12,7 @@
     </node>
 
     <!-- Move Base -->
+
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
         <rosparam file="$(find jackal_bsc)/params/costmap_common_params.yaml" command="load" ns="global_costmap" />
@@ -27,6 +28,7 @@
         <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
 
         <remap from="odom" to="odometry/filtered" />
+        <remap from="cmd_vel" to="/jackal_bsc/nav_vel"/>
     </node>
 
 </launch>
