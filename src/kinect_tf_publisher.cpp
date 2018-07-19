@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
     q.setRPY(0, 0, 0);
 
     // Translations
-    tf_front_mount_to_frame.setOrigin(tf::Vector3(0.174, 0, 0.2));
+    tf_front_mount_to_frame.setOrigin(tf::Vector3(0.11715, 0, 0.125));
     tf_front_mount_to_frame.setRotation(q);
     tf_front_mount_to_frame.frame_id_ = front_mount;
     tf_front_mount_to_frame.child_frame_id_ = kinect_link;

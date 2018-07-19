@@ -1,0 +1,5 @@
+<launch>
+	<include file="$(find jackal_viz)/launch/view_robot.launch">
+        <arg name="config" value="navigation"/>
+    </include>
+</launch>
