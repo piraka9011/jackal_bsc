@@ -9,6 +9,7 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <nav_msgs/Odometry.h>
 #include <std_msgs/Float64.h>
+#include <jackal_bsc/Float64Stamped.h>
 
 #include <math.h>
 #include <iostream>
@@ -31,10 +32,11 @@ public:
     double delta_x, delta_y, dist_to_goal; // Displacement from current location to goal
     double delta_z, user_vel_z, navi_vel;
     double user_vel_x, user_delay_z, user_delay_x;
-    std_msgs::Float64 bsc_param;
+    jackal_bsc::Float64Stamped bsc_param;
     double max_dist;
     double max_vel;
     int q_size;
+    uint32_t seq;
     bool goal_received; // Check if action CB ran
 
     ros::Publisher bsc_pub;

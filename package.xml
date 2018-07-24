@@ -53,6 +53,8 @@
   <depend>rospy</depend>
   <depend>geometry_msgs</depend>
   <depend>message_filters</depend>
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
   <depend>tf</depend>
 
   <!-- The export tag contains other, unspecified, tags -->

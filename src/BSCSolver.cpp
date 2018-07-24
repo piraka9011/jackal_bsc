@@ -24,10 +24,11 @@ BSCSolver::BSCSolver(ros::NodeHandle* nh):
     max_dist = 15.0;
     max_vel = 3.0;
     q_size = 10;
+    seq = 0;
     goal_received = false;
     // Create publishers
     bsc_pub = n.advertise<Twist>("/jackal_bsc/bsc_vel", q_size);
-    alpha_pub = n.advertise<std_msgs::Float64>("/jackal_bsc/alpha", q_size);
+    alpha_pub = n.advertise<jackal_bsc::Float64Stamped>("/jackal_bsc/alpha", q_size);
 
     // Create normal subscribers
     goal_sub = n.subscribe(goal_topic, 10, &BSCSolver::goal_cb, this);
@@ -56,7 +57,10 @@ void BSCSolver::bsc_cb(const geometry_msgs::TwistStampedConstPtr &nav_vel,
                        const geometry_msgs::TwistStampedConstPtr &key_vel,
                        const nav_msgs::OdometryConstPtr& odom)
 {
+    ROS_WARN_THROTTLE(15, "[BSC]: No goal received...");
     if (goal_received) {
+        ROS_INFO_THROTTLE(10, "[BSC]: Blending...");
+        seq++;
         // Compute difference in user and navigation commands
         user_vel_z = key_vel->twist.angular.z;
         user_vel_x = key_vel->twist.linear.x;
@@ -71,6 +75,8 @@ void BSCSolver::bsc_cb(const geometry_msgs::TwistStampedConstPtr &nav_vel,
         dist_to_goal = hypot(delta_x, delta_y);
 
         // Compute BSC parameter
+        bsc_param.header.seq = seq;
+        bsc_param.header.stamp = ros::Time::now();
         bsc_param.data = fmax(0, (1 - (dist_to_goal / max_dist))) *
                     fmax(0, (1 - pow(delta_z / max_vel, 2)));
         alpha_pub.publish(bsc_param);

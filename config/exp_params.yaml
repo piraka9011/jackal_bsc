@@ -1,3 +1,5 @@
 name: "Bob"
 drift_value: 0.2
 delay_time: 3.0
+# map or odom
+nav_type: "odom"

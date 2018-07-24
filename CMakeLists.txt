@@ -13,7 +13,18 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   message_filters
   nav_msgs
+  std_msgs
   tf
+)
+
+add_message_files(
+  FILES
+  Float64Stamped.msg
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
 )
 
 ###################################
@@ -28,7 +39,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
    INCLUDE_DIRS include
    LIBRARIES jackal_bsc
-#  CATKIN_DEPENDS geometry_msgs message_filters roscpp rospy
+   CATKIN_DEPENDS message_runtime
 #  DEPENDS system_lib
 )
 
