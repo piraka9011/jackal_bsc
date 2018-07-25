@@ -42,10 +42,10 @@ class DataCollection:
         # Goal
         self.goal = MoveBaseGoal()
         self.goal.target_pose.header.frame_id = nav_type
-        self.goal.target_pose.pose.position.x = -11.57
-        self.goal.target_pose.pose.position.y = -15.32
-        self.goal.target_pose.pose.orientation.z = 0.8785
-        self.goal.target_pose.pose.orientation.w = -0.4775
+        self.goal.target_pose.pose.position.x = 0.0
+        self.goal.target_pose.pose.position.y = 0.0
+        self.goal.target_pose.pose.orientation.z = -0.01
+        self.goal.target_pose.pose.orientation.w = 0.01
 
         # Launch Bag file
         pkg = 'rosbag'
