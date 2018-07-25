@@ -82,10 +82,11 @@ class DataCollection:
 
     def start(self):
         rospy.loginfo("[Data]: Launching bag")
-        self.roslaunch_process = self.launch.launch(self.node)
-        rospy.loginfo("[Data]: Bagging: {}".format(self.roslaunch_process.is_alive()))
+        # self.roslaunch_process = self.launch.launch(self.node)
+        # rospy.loginfo("[Data]: Bagging: {}".format(self.roslaunch_process.is_alive()))
         try:
             self.move_client.send_goal(self.goal)
+            rospy.sleep(2)
             self.start_time = rospy.Time().now()
             rospy.loginfo("[Data]: Start experiment")
             rospy.spin()
@@ -96,7 +97,7 @@ class DataCollection:
     def end(self):
         rospy.loginfo("[Data]: Completing data collection...")
         rospy.signal_shutdown("End experiment")
-        self.roslaunch_process.stop()
+        # self.roslaunch_process.stop()
         self.end_time = rospy.Time().now()
         total_time = self.end_time - self.start_time
         format_time = str(total_time.secs) + '.' + str(total_time.nsecs)

@@ -1,5 +1,4 @@
 <launch>
-    <rosparam command="load" file="$(find jackal_bsc)/config/exp_params.yaml" ns="jackal_bsc"/>
     <rosparam command="load" file="$(find jackal_bsc)/config/bsc_params.yaml" ns="jackal_bsc"/>
     <param name="/jackal_bsc/exp_type" type="str" value="BSC"/>
 

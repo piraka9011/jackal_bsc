@@ -11,4 +11,5 @@ bsc_teleop_topic: "/jackal_bsc/key_vel_stamped"
 bsc_topic: "/jackal_bsc/bsc_vel"
 # Util Topics
 odom_topic: "/odometry/filtered"
-goal_topic: "/move_base/current_goal"
+# "/move_base/current_goal"
+goal_topic: "/move_base_simple/goal"
