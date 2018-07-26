@@ -1,0 +1,3 @@
+<launch>
+	<node name="rviz_exp" pkg="rviz" type="rviz" args="-d $(find jackal_bsc)/config/rviz_exp.rviz"/>
+</launch>
