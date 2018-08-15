@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   geometry_msgs
   message_filters
+  message_generation
   nav_msgs
   std_msgs
   tf
@@ -85,7 +86,10 @@ include_directories(
 # )
 
 add_library(BSCTwistStamped src/BSCTwistStamped.cpp)
+
 add_library(BSCSolver src/BSCSolver.cpp)
+add_dependencies(BSCSolver ${catkin_EXPORTED_TARGETS})
+target_link_libraries(BSCSolver ${catkin_LIBRARIES})
 
 add_executable(twist_stamped_publisher src/twist_stamped_publisher.cpp)
 target_link_libraries(twist_stamped_publisher BSCTwistStamped ${catkin_LIBRARIES})
