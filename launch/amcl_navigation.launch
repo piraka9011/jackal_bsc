@@ -7,9 +7,6 @@
     <!-- Kinect -->
     <include file="$(find jackal_bsc)/launch/kinect.launch"/>
 
-    <!-- Kinect TF -->
-    <include file="$(find jackal_bsc)/launch/kinect_tf.launch"/>
-
     <!-- Fake laser scan-->
     <arg name="scan_topic" default="/jackal_laser_scan"/>
     <node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan">
